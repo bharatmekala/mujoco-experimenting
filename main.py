@@ -1,165 +1,147 @@
-import mujoco as mj
-from mujoco.glfw import glfw
+import mujoco
+import mujoco.viewer
 import numpy as np
-import os
+import time
 
-xml_path = 'ufactory_xarm7/scene.xml' #xml file (assumes this is in the same folder as this file)
-simend = 20 #simulation time
-print_camera_config = 0 #set to 1 to print camera config
-                        #this is useful for initializing view of the model)
+# Integration timestep in seconds. This corresponds to the amount of time the joint
+# velocities will be integrated for to obtain the desired joint positions.
+integration_dt: float = 0.1
 
-# For callback functions
-button_left = False
-button_middle = False
-button_right = False
-lastx = 0
-lasty = 0
+# Damping term for the pseudoinverse. This is used to prevent joint velocities from
+# becoming too large when the Jacobian is close to singular.
+damping: float = 1e-4
 
-def init_controller(model,data):
-    data.ctrl = np.zeros(model.nu)
+# Gains for the twist computation. These should be between 0 and 1. 0 means no
+# movement, 1 means move the end-effector to the target in one integration step.
+Kpos: float = 0.95
+Kori: float = 0.95
 
-def controller(model, data):
-    data.ctrl[:] += 0.01
+# Whether to enable gravity compensation.
+gravity_compensation: bool = True
 
-def keyboard(window, key, scancode, act, mods):
-    if act == glfw.PRESS and key == glfw.KEY_BACKSPACE:
-        mj.mj_resetData(model, data)
-        mj.mj_forward(model, data)
+# Simulation timestep in seconds.
+dt: float = 0.002
 
-def mouse_button(window, button, act, mods):
-    # update button state
-    global button_left
-    global button_middle
-    global button_right
+# Nullspace P gain.
+Kn = np.asarray([10.0, 10.0, 10.0, 10.0, 5.0, 5.0, 5.0])
 
-    button_left = (glfw.get_mouse_button(
-        window, glfw.MOUSE_BUTTON_LEFT) == glfw.PRESS)
-    button_middle = (glfw.get_mouse_button(
-        window, glfw.MOUSE_BUTTON_MIDDLE) == glfw.PRESS)
-    button_right = (glfw.get_mouse_button(
-        window, glfw.MOUSE_BUTTON_RIGHT) == glfw.PRESS)
+# Maximum allowable joint velocity in rad/s.
+max_angvel = 0.785
 
-    # update mouse position
-    glfw.get_cursor_pos(window)
 
-def mouse_move(window, xpos, ypos):
-    # compute mouse displacement, save
-    global lastx
-    global lasty
-    global button_left
-    global button_middle
-    global button_right
+def main() -> None:
+    assert mujoco.__version__ >= "3.1.0", "Please upgrade to mujoco 3.1.0 or later."
 
-    dx = xpos - lastx
-    dy = ypos - lasty
-    lastx = xpos
-    lasty = ypos
+    # Load the model and data
+    model = mujoco.MjModel.from_xml_path("ufactory_xarm7/scene.xml")
+    data = mujoco.MjData(model)
 
-    # no buttons down: nothing to do
-    if (not button_left) and (not button_middle) and (not button_right):
-        return
+    # Enable gravity compensation
+    model.body_gravcomp[:] = float(gravity_compensation)
+    model.opt.timestep = dt
 
-    # get current window size
-    width, height = glfw.get_window_size(window)
+    # End-effector site we wish to control
+    site_name = "target_site"
+    site_id = model.site(site_name).id
 
-    # get shift key state
-    PRESS_LEFT_SHIFT = glfw.get_key(
-        window, glfw.KEY_LEFT_SHIFT) == glfw.PRESS
-    PRESS_RIGHT_SHIFT = glfw.get_key(
-        window, glfw.KEY_RIGHT_SHIFT) == glfw.PRESS
-    mod_shift = (PRESS_LEFT_SHIFT or PRESS_RIGHT_SHIFT)
+    # Get the DOF and actuator IDs for the joints we wish to control
+    joint_names = [
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6",
+        "joint7",
+    ]
+    
+    act_names = [
+        "act1",
+        "act2",
+        "act3",
+        "act4",
+        "act5",
+        "act6",
+        "act7",
+    ]
+    dof_ids = np.array([model.joint(name).id for name in joint_names])
+    actuator_ids = np.array([model.actuator(name).id for name in act_names])
 
-    # determine action based on mouse button
-    if button_right:
-        if mod_shift:
-            action = mj.mjtMouse.mjMOUSE_MOVE_H
-        else:
-            action = mj.mjtMouse.mjMOUSE_MOVE_V
-    elif button_left:
-        if mod_shift:
-            action = mj.mjtMouse.mjMOUSE_ROTATE_H
-        else:
-            action = mj.mjtMouse.mjMOUSE_ROTATE_V
-    else:
-        action = mj.mjtMouse.mjMOUSE_ZOOM
+    # Initial joint configuration saved as a keyframe in the XML file
+    key_name = "home"
+    key_id = model.key(key_name).id
+    q0 = model.key(key_name).qpos
 
-    mj.mjv_moveCamera(model, action, dx/height,
-                      dy/height, scene, cam)
+    # Define a fixed target position and orientation
+    target_pos = np.array([0.1, -0.5, 0.15])  # Example target position (x, y, z)
+    target_quat = np.array([0.0, 1.0, 0.0, 0.0])  # Example target quaternion (identity)
 
-def scroll(window, xoffset, yoffset):
-    action = mj.mjtMouse.mjMOUSE_ZOOM
-    mj.mjv_moveCamera(model, action, 0.0, -0.05 *
-                      yoffset, scene, cam)
+    # Pre-allocate numpy arrays
+    jac = np.zeros((6, model.nv))
+    diag = damping * np.eye(6)
+    eye = np.eye(model.nv)
+    twist = np.zeros(6)
+    site_quat = np.zeros(4)
+    site_quat_conj = np.zeros(4)
+    error_quat = np.zeros(4)
 
-#get the full path
-dirname = os.path.dirname(__file__)
-abspath = os.path.join(dirname + "/" + xml_path)
-xml_path = abspath
+    with mujoco.viewer.launch_passive(
+        model=model,
+        data=data,
+        show_left_ui=False,
+        show_right_ui=False,
+    ) as viewer:
+        # Reset the simulation
+        mujoco.mj_resetDataKeyframe(model, data, key_id)
 
-# MuJoCo data structures
-model = mj.MjModel.from_xml_path(xml_path)  # MuJoCo model
-data = mj.MjData(model)                # MuJoCo data
-cam = mj.MjvCamera()                        # Abstract camera
-opt = mj.MjvOption()                        # visualization options
+        # Reset the free camera
+        mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 
-# Init GLFW, create window, make OpenGL context current, request v-sync
-glfw.init()
-window = glfw.create_window(1200, 900, "Demo", None, None)
-glfw.make_context_current(window)
-glfw.swap_interval(1)
+        # Enable site frame visualization
+        viewer.opt.frame = mujoco.mjtFrame.mjFRAME_SITE
 
-# initialize visualization data structures
-mj.mjv_defaultCamera(cam)
-mj.mjv_defaultOption(opt)
-scene = mj.MjvScene(model, maxgeom=10000)
-context = mj.MjrContext(model, mj.mjtFontScale.mjFONTSCALE_150.value)
+        while viewer.is_running():
+            step_start = time.time()
 
-# install GLFW mouse and keyboard callbacks
-glfw.set_key_callback(window, keyboard)
-glfw.set_cursor_pos_callback(window, mouse_move)
-glfw.set_mouse_button_callback(window, mouse_button)
-glfw.set_scroll_callback(window, scroll)
+            # Spatial velocity (aka twist)
+            dx = target_pos - data.site(site_id).xpos
+            twist[:3] = Kpos * dx / integration_dt
+            mujoco.mju_mat2Quat(site_quat, data.site(site_id).xmat)
+            mujoco.mju_negQuat(site_quat_conj, site_quat)
+            mujoco.mju_mulQuat(error_quat, target_quat, site_quat_conj)
+            mujoco.mju_quat2Vel(twist[3:], error_quat, 1.0)
+            twist[3:] *= Kori / integration_dt
 
-# Example on how to set camera configuration
-# cam.azimuth = 90
-# cam.elevation = -45
-# cam.distance = 2
-# cam.lookat = np.array([0.0, 0.0, 0])
+            # Jacobian
+            mujoco.mj_jacSite(model, data, jac[:3], jac[3:], site_id)
 
-#initialize the controller
-init_controller(model,data)
+            # Damped least squares
+            dq = jac.T @ np.linalg.solve(jac @ jac.T + diag, twist)
 
-#set the controller
-mj.set_mjcb_control(controller)
+            # Nullspace control biasing joint velocities towards the home configuration
+            bias = np.zeros(model.nv)
+            print(q0.shape)
+            bias[dof_ids] = Kn * (q0[dof_ids]- data.qpos[dof_ids])
+            dq += (eye - np.linalg.pinv(jac) @ jac) @ bias
 
-while not glfw.window_should_close(window):
-    time_prev = data.time
+            # Clamp maximum joint velocity
+            dq_abs_max = np.abs(dq).max()
+            if dq_abs_max > max_angvel:
+                dq *= max_angvel / dq_abs_max
 
-    while (data.time - time_prev < 1.0/60.0):
-        mj.mj_step(model, data)
+            # Integrate joint velocities to obtain joint positions
+            q = data.qpos.copy()  # Note the copy here is important
+            mujoco.mj_integratePos(model, q, dq, integration_dt)
+            np.clip(q, *model.jnt_range.T, out=q)
 
-    if (data.time>=simend):
-        break;
+            # Set the control signal and step the simulation
+            data.ctrl[actuator_ids] = q[dof_ids]
+            mujoco.mj_step(model, data)
 
-    # get framebuffer viewport
-    viewport_width, viewport_height = glfw.get_framebuffer_size(
-        window)
-    viewport = mj.MjrRect(0, 0, viewport_width, viewport_height)
+            viewer.sync()
+            time_until_next_step = dt - (time.time() - step_start)
+            if time_until_next_step > 0:
+                time.sleep(time_until_next_step)
 
-    #print camera configuration (help to initialize the view)
-    if (print_camera_config==1):
-        print('cam.azimuth =',cam.azimuth,';','cam.elevation =',cam.elevation,';','cam.distance = ',cam.distance)
-        print('cam.lookat =np.array([',cam.lookat[0],',',cam.lookat[1],',',cam.lookat[2],'])')
-
-    # Update scene and render
-    mj.mjv_updateScene(model, data, opt, None, cam,
-                       mj.mjtCatBit.mjCAT_ALL.value, scene)
-    mj.mjr_render(viewport, scene, context)
-
-    # swap OpenGL buffers (blocking call due to v-sync)
-    glfw.swap_buffers(window)
-
-    # process pending GUI events, call GLFW callbacks
-    glfw.poll_events()
-
-glfw.terminate()
+if __name__ == "__main__":
+    main()

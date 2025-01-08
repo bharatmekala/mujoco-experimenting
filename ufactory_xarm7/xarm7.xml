@@ -100,6 +100,7 @@
                       <inertial pos="-0.00065489 -0.0018497 0.048028" quat="0.997403 -0.0717512 -0.0061836 0.000477479"
                         mass="0.54156" diaginertia="0.000471093 0.000332307 0.000254799"/>
                       <geom mesh="base_link"/>
+                      <site name="target_site" pos="0.0 0.0 0.1" size="0.01" type="sphere" rgba="1 0 0 0.8" />
                       <body name="left_outer_knuckle" pos="0 0.035 0.059098">
                         <inertial pos="0 0.021559 0.015181" quat="0.47789 0.87842 0 0" mass="0.033618"
                           diaginertia="1.9111e-05 1.79089e-05 1.90167e-06"/>
