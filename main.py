@@ -120,7 +120,6 @@ def main() -> None:
 
             # Nullspace control biasing joint velocities towards the home configuration
             bias = np.zeros(model.nv)
-            print(q0.shape)
             bias[dof_ids] = Kn * (q0[dof_ids]- data.qpos[dof_ids])
             dq += (eye - np.linalg.pinv(jac) @ jac) @ bias
 
