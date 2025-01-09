@@ -20,7 +20,16 @@ def init_controller(model,data):
     pass
 
 def controller(model, data):
-    #put the controller here. This function is called inside the simulation.
+    # Define gripper actuator name
+    gripper_act_name = "gripper"
+    
+    # Get gripper actuator ID
+    gripper_act_id = model.actuator(gripper_act_name).id
+    
+    # Define gripper states
+    GRIPPER_OPEN = 255.0
+    GRIPPER_CLOSE = 0.0
+    data.ctrl[gripper_act_id] = GRIPPER_OPEN
     pass
 
 def keyboard(window, key, scancode, act, mods):

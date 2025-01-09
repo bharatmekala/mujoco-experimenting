@@ -28,6 +28,19 @@ Kn = np.asarray([10.0, 10.0, 10.0, 10.0, 5.0, 5.0, 5.0])
 # Maximum allowable joint velocity in rad/s.
 max_angvel = 0.785
 
+ # Define gripper states
+GRIPPER_OPEN = 0.0
+GRIPPER_CLOSE = 50.0
+
+targets = [
+    {"pos": np.array([0.1, -0.5, 0.2]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
+    {"pos": np.array([0.1, -0.5, 0.1]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_CLOSE},
+    {"pos": np.array([0.1, -0.5, 0.5]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
+    
+]
+
+
+
 
 def main() -> None:
     assert mujoco.__version__ >= "3.1.0", "Please upgrade to mujoco 3.1.0 or later."
@@ -43,6 +56,16 @@ def main() -> None:
     # End-effector site we wish to control
     site_name = "target_site"
     site_id = model.site(site_name).id
+    
+    # Define gripper actuator name
+    gripper_act_name = "gripper"
+    
+    # Get gripper actuator ID
+    gripper_act_id = model.actuator(gripper_act_name).id
+    
+    
+    #initialize the current target
+    current_target = 0
 
     # Get the DOF and actuator IDs for the joints we wish to control
     joint_names = [
@@ -72,10 +95,6 @@ def main() -> None:
     key_id = model.key(key_name).id
     q0 = model.key(key_name).qpos
 
-    # Define a fixed target position and orientation
-    target_pos = np.array([0.1, -0.5, 0.15])  # Example target position (x, y, z)
-    target_quat = np.array([0.0, 1.0, 0.0, 0.0])  # Example target quaternion (identity)
-
     # Pre-allocate numpy arrays
     jac = np.zeros((6, model.nv))
     diag = damping * np.eye(6)
@@ -102,6 +121,11 @@ def main() -> None:
 
         while viewer.is_running():
             step_start = time.time()
+            
+            # Current target
+            target = targets[current_target]
+            target_pos = target["pos"]
+            target_quat = target["quat"]
 
             # Spatial velocity (aka twist)
             dx = target_pos - data.site(site_id).xpos
@@ -111,6 +135,14 @@ def main() -> None:
             mujoco.mju_mulQuat(error_quat, target_quat, site_quat_conj)
             mujoco.mju_quat2Vel(twist[3:], error_quat, 1.0)
             twist[3:] *= Kori / integration_dt
+            
+            if np.linalg.norm(dx) < 0.015 and np.linalg.norm(error_quat[1:]) < 0.015:
+                print("Target reached")
+                # Toggle gripper state
+                data.ctrl[gripper_act_id] = target["gripper"]
+                current_target = (current_target + 1) % len(targets)
+            else:
+                print(f"dx norm: {np.linalg.norm(dx)}, error_quat norm: {np.linalg.norm(error_quat[1:])}")
 
             # Jacobian
             mujoco.mj_jacSite(model, data, jac[:3], jac[3:], site_id)
@@ -136,6 +168,7 @@ def main() -> None:
             # Set the control signal and step the simulation
             data.ctrl[actuator_ids] = q[dof_ids]
             mujoco.mj_step(model, data)
+            
 
             viewer.sync()
             time_until_next_step = dt - (time.time() - step_start)
