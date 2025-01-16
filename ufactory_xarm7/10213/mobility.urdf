@@ -1,0 +1,1004 @@
+<?xml version="1.0" ?>
+<robot name="partnet_3dc60bce3e8d3ece3077dad41839c251">
+	<link name="base"/>
+	<link name="link_0">
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-19.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-18.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-20.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-22.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-30.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-79.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-78.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-71.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-75.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-70.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-67.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-64.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-63.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-62.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-61.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-60.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-65.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-66.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-68.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-74.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-76.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-77.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-37.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-29.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-21.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-39.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-40.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-15.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-16.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-17.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-13.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-8.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-5.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-4.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-6.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-7.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-11.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-24.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-10.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-9.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-14.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-23.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-25.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-26.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-28.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-36.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-32.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-27.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-31.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-12.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-34.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-33.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-58.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-57.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-46.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-35.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-73.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-56.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-47.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-55.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-72.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-69.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-59.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-48.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-45.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-80.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-42.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-41.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-44.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-43.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-54.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-52.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-53.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-51.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-50.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-49.obj"/>
+			</geometry>
+		</visual>
+		<visual name="keyboard-5">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-38.obj"/>
+			</geometry>
+		</visual>
+		<visual name="touchpad_surface-8">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-3.obj"/>
+			</geometry>
+		</visual>
+		<visual name="base_frame-7">
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-4.obj"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-19.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-18.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-20.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-22.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-30.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-79.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-78.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-71.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-75.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-70.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-67.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-64.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-63.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-62.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-61.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-60.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-65.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-66.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-68.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-74.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-76.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-77.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-37.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-29.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-21.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-39.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-40.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-15.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-16.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-17.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-13.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-8.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-5.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-4.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-6.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-7.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-11.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-24.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-10.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-9.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-14.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-23.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-25.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-26.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-28.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-36.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-32.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-27.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-31.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-12.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-34.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-33.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-58.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-57.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-46.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-35.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-73.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-56.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-47.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-55.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-72.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-69.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-59.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-48.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-45.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-80.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-42.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-41.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-44.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-43.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-54.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-52.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-53.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-51.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-50.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-49.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/original-38.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-3.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-4.obj"/>
+			</geometry>
+		</collision>
+	</link>
+	<joint name="joint_0" type="fixed">
+		<origin rpy="1.570796326794897 0 -1.570796326794897" xyz="0 0 0"/>
+		<child link="link_0"/>
+		<parent link="base"/>
+	</joint>
+	<link name="link_1">
+		<visual name="shaft-4">
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-0.obj"/>
+			</geometry>
+		</visual>
+		<visual name="screen-9">
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-1.obj"/>
+			</geometry>
+		</visual>
+		<visual name="screen_frame-10">
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-2.obj"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-0.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-1.obj"/>
+			</geometry>
+		</collision>
+		<collision>
+			<origin xyz="0 0.19 0.19"/>
+			<geometry>
+				<mesh filename="/Users/bharatmekala/mujoco/ufactory_xarm7/10213/new-2.obj"/>
+			</geometry>
+		</collision>
+	</link>
+	<joint name="joint_1" type="revolute">
+		<origin xyz="0 -0.19 -0.19"/>
+		<axis xyz="-1 0 0"/>
+		<child link="link_1"/>
+		<parent link="link_0"/>
+		<limit lower="-1.832595714594046" upper="-0.0"/>
+	</joint>
+</robot>

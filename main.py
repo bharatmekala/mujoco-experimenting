@@ -30,11 +30,11 @@ max_angvel = 0.785
 
  # Define gripper states
 GRIPPER_OPEN = 0.0
-GRIPPER_CLOSE = 50.0
+GRIPPER_CLOSE = 220.0
 
 targets = [
     {"pos": np.array([0.1, -0.5, 0.2]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
-    {"pos": np.array([0.1, -0.5, 0.1]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_CLOSE},
+    {"pos": np.array([0.1, -0.5, 0.05]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_CLOSE},
     {"pos": np.array([0.1, -0.5, 0.5]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
     
 ]
@@ -136,7 +136,7 @@ def main() -> None:
             mujoco.mju_quat2Vel(twist[3:], error_quat, 1.0)
             twist[3:] *= Kori / integration_dt
             
-            if np.linalg.norm(dx) < 0.015 and np.linalg.norm(error_quat[1:]) < 0.015:
+            if np.linalg.norm(dx) < 0.016 and np.linalg.norm(error_quat[1:]) < 0.016:
                 print("Target reached")
                 # Toggle gripper state
                 data.ctrl[gripper_act_id] = target["gripper"]
@@ -163,7 +163,7 @@ def main() -> None:
             # Integrate joint velocities to obtain joint positions
             q = data.qpos.copy()  # Note the copy here is important
             mujoco.mj_integratePos(model, q, dq, integration_dt)
-            np.clip(q, *model.jnt_range.T, out=q)
+            # np.clip(q, *model.jnt_range.T, out=q)
 
             # Set the control signal and step the simulation
             data.ctrl[actuator_ids] = q[dof_ids]
