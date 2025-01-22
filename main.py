@@ -44,8 +44,8 @@ def generate_random_targets():
     ])
     
     # Scale pos1 to create pos2 with random scale factors for x and y
-    scale_factor_x = np.random.uniform(0, 2)
-    scale_factor_y = np.random.uniform(0, 2)
+    scale_factor_x = np.random.uniform(0.75, 1.25)
+    scale_factor_y = np.random.uniform(0.75, 1.25)
     pos2_x = pos1[0] * scale_factor_x
     pos2_y = pos1[1] * scale_factor_y
     
@@ -63,7 +63,6 @@ def generate_random_targets():
         {"pos": pos1, "quat": np.array([0.0, 0, 0.0, 0.0])},
         {"pos": pos2, "quat": np.array([0.0, 0, 0.0, 0.0])},
     ]
-
 
 
 def main() -> None:
@@ -129,6 +128,9 @@ def main() -> None:
     site_quat_conj = np.zeros(4)
     error_quat = np.zeros(4)
 
+    # Initialize list to record qpos
+    qpos_list = []
+
     with mujoco.viewer.launch_passive(
         model=model,
         data=data,
@@ -171,6 +173,10 @@ def main() -> None:
             else:
                 print(f"dx norm: {np.linalg.norm(dx)}, error_quat norm: {np.linalg.norm(error_quat[1:])}")
 
+            # Record qpos after the first target is reached
+            if current_target >= 1:
+                qpos_list.append(data.qpos.copy())
+
             # Jacobian
             mujoco.mj_jacSite(model, data, jac[:3], jac[3:], site_id)
 
@@ -203,6 +209,12 @@ def main() -> None:
             time_until_next_step = dt - (time.time() - step_start)
             if time_until_next_step > 0:
                 time.sleep(time_until_next_step)
+        
+        # Save qpos_list to data.txt after simulation ends
+        with open("data.txt", "w") as file:
+            for qpos in qpos_list:
+                qpos_str = ' '.join(map(str, qpos))
+                file.write(f"{qpos_str}\n")
 
 if __name__ == "__main__":
     main()
