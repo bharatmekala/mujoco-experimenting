@@ -40,28 +40,28 @@ def generate_random_targets():
     pos1 = np.array([
         np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
         np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
-        np.random.uniform(0.1, 1)
+        np.random.uniform(0.3, 0.7)
     ])
     
     # Scale pos1 to create pos2 with random scale factors for x and y
-    scale_factor_x = np.random.uniform(1.0, 2)
-    scale_factor_y = np.random.uniform(1.0, 2)
+    scale_factor_x = np.random.uniform(0, 2)
+    scale_factor_y = np.random.uniform(0, 2)
     pos2_x = pos1[0] * scale_factor_x
     pos2_y = pos1[1] * scale_factor_y
     
     # Clamp the x and y to remain within [-0.5, 0.5]
-    pos2_x = np.clip(pos2_x, -1, 1)
-    pos2_y = np.clip(pos2_y, -1, 1)
+    pos2_x = np.clip(pos2_x, -0.5, 0.5)
+    pos2_y = np.clip(pos2_y, -0.5, 0.5)
     
     pos2 = np.array([
         pos2_x,
         pos2_y,
-        np.random.uniform(0.1, 1)
+        np.random.uniform(0.3, 0.5)
     ])
     
     return [
-        {"pos": pos1, "quat": np.array([0.0, 1.0, 0.0, 0.0])},
-        {"pos": pos2, "quat": np.array([0.0, 1.0, 0.0, 0.0])},
+        {"pos": pos1, "quat": np.array([0.0, 0, 0.0, 0.0])},
+        {"pos": pos2, "quat": np.array([0.0, 0, 0.0, 0.0])},
     ]
 
 
