@@ -32,21 +32,45 @@ max_angvel = 0.785
 GRIPPER_OPEN = 0.0
 GRIPPER_CLOSE = 220.0
 
-targets = [
-    {"pos": np.array([0.1, -0.5, 0.2]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
-    {"pos": np.array([0.1, -0.5, 0.05]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_CLOSE},
-    {"pos": np.array([0.1, -0.5, 0.5]), "quat": np.array([0.0, 1.0, 0.0, 0.0]), "gripper": GRIPPER_OPEN},
-    
-]
 
+
+def generate_random_targets():
+    import numpy as np
+    # Generate pos1 with x and y outside [-0.2, 0.2]
+    pos1 = np.array([
+        np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
+        np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
+        np.random.uniform(0.1, 1)
+    ])
+    
+    # Scale pos1 to create pos2 with random scale factors for x and y
+    scale_factor_x = np.random.uniform(1.0, 2)
+    scale_factor_y = np.random.uniform(1.0, 2)
+    pos2_x = pos1[0] * scale_factor_x
+    pos2_y = pos1[1] * scale_factor_y
+    
+    # Clamp the x and y to remain within [-0.5, 0.5]
+    pos2_x = np.clip(pos2_x, -1, 1)
+    pos2_y = np.clip(pos2_y, -1, 1)
+    
+    pos2 = np.array([
+        pos2_x,
+        pos2_y,
+        np.random.uniform(0.1, 1)
+    ])
+    
+    return [
+        {"pos": pos1, "quat": np.array([0.0, 1.0, 0.0, 0.0])},
+        {"pos": pos2, "quat": np.array([0.0, 1.0, 0.0, 0.0])},
+    ]
 
 
 
 def main() -> None:
-    assert mujoco.__version__ >= "3.1.0", "Please upgrade to mujoco 3.1.0 or later."
-
+    
+    targets = generate_random_targets()
     # Load the model and data
-    model = mujoco.MjModel.from_xml_path("ufactory_xarm7/scene.xml")
+    model = mujoco.MjModel.from_xml_path("franka_emika_panda/scene.xml")
     data = mujoco.MjData(model)
 
     # Enable gravity compensation
@@ -58,7 +82,7 @@ def main() -> None:
     site_id = model.site(site_name).id
     
     # Define gripper actuator name
-    gripper_act_name = "gripper"
+    gripper_act_name = "actuator8"
     
     # Get gripper actuator ID
     gripper_act_id = model.actuator(gripper_act_name).id
@@ -75,19 +99,20 @@ def main() -> None:
         "joint4",
         "joint5",
         "joint6",
-        "joint7",
+        "joint7"
     ]
     
     act_names = [
-        "act1",
-        "act2",
-        "act3",
-        "act4",
-        "act5",
-        "act6",
-        "act7",
+        "actuator1",
+        "actuator2",
+        "actuator3",
+        "actuator4",
+        "actuator5",
+        "actuator6",
+        "actuator7"
     ]
     dof_ids = np.array([model.joint(name).id for name in joint_names])
+    print(dof_ids)
     actuator_ids = np.array([model.actuator(name).id for name in act_names])
 
     # Initial joint configuration saved as a keyframe in the XML file
@@ -136,11 +161,13 @@ def main() -> None:
             mujoco.mju_quat2Vel(twist[3:], error_quat, 1.0)
             twist[3:] *= Kori / integration_dt
             
-            if np.linalg.norm(dx) < 0.016 and np.linalg.norm(error_quat[1:]) < 0.016:
+            if np.linalg.norm(dx) < 0.02 and np.linalg.norm(error_quat[1:]) < 0.02:
                 print("Target reached")
-                # Toggle gripper state
-                data.ctrl[gripper_act_id] = target["gripper"]
-                current_target = (current_target + 1) % len(targets)
+                if current_target == len(targets) - 1:
+                    print("Last target reached. Exiting.")
+                    break
+                else:
+                    current_target += 1
             else:
                 print(f"dx norm: {np.linalg.norm(dx)}, error_quat norm: {np.linalg.norm(error_quat[1:])}")
 
@@ -152,6 +179,8 @@ def main() -> None:
 
             # Nullspace control biasing joint velocities towards the home configuration
             bias = np.zeros(model.nv)
+            print(Kn.shape)
+            print(q0[dof_ids].shape)
             bias[dof_ids] = Kn * (q0[dof_ids]- data.qpos[dof_ids])
             dq += (eye - np.linalg.pinv(jac) @ jac) @ bias
 

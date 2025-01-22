@@ -3,7 +3,7 @@ from mujoco.glfw import glfw
 import numpy as np
 import os
 
-xml_path = 'ufactory_xarm7/scene.xml' #xml file (assumes this is in the same folder as this file)
+xml_path = 'franka_emika_panda/scene.xml' #xml file (assumes this is in the same folder as this file)
 simend = 20 #simulation time
 print_camera_config = 0 #set to 1 to print camera config
                         #this is useful for initializing view of the model)
@@ -141,7 +141,7 @@ while not glfw.window_should_close(window):
         mj.mj_step(model, data)
 
     if (data.time>=simend):
-        break;
+        break
 
     # get framebuffer viewport
     viewport_width, viewport_height = glfw.get_framebuffer_size(
