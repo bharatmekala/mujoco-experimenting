@@ -36,7 +36,26 @@ GRIPPER_CLOSE = 220.0
 
 def generate_random_targets():
     import numpy as np
-    # Generate pos1 with x and y outside [-0.2, 0.2]
+
+    # Generate qpos for target[0] based on control ranges defined in panda.xml
+    qpos_ranges = [
+        (-0.5, 0.5),       # actuator1 (default range)
+        (-1.7628, 1.7628), # actuator2 ctrlrange
+        (-0.5, 0.5),       # actuator3 (default range)
+        (-3.0718, -0.0698),# actuator4 ctrlrange
+        (-0.5, 0.5),       # actuator5 (default range)
+        (-0.0175, 3.7525), # actuator6 ctrlrange
+        (-0.5, 0.5),       # actuator7 (default range)
+        (0, 255),          # actuator8 ctrlrange (for tendon "split")
+        (-0.5, 0.5)        # extra DOF (default)
+    ]
+    qpos0 = np.array([np.random.uniform(low, high) for (low, high) in qpos_ranges])
+    target0 = {
+        "qpos": qpos0,
+        "quat": np.array([0.0, 0.0, 0.0, 0.0])
+    }
+    
+    # Generate pos for target[1] with x and y outside [-0.2, 0.2]
     pos1 = np.array([
         np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
         np.random.choice([np.random.uniform(-0.5, -0.2), np.random.uniform(0.2, 0.5)]),
@@ -46,12 +65,8 @@ def generate_random_targets():
     # Scale pos1 to create pos2 with random scale factors for x and y
     scale_factor_x = np.random.uniform(0.75, 1.25)
     scale_factor_y = np.random.uniform(0.75, 1.25)
-    pos2_x = pos1[0] * scale_factor_x
-    pos2_y = pos1[1] * scale_factor_y
-    
-    # Clamp the x and y to remain within [-0.5, 0.5]
-    pos2_x = np.clip(pos2_x, -0.5, 0.5)
-    pos2_y = np.clip(pos2_y, -0.5, 0.5)
+    pos2_x = np.clip(pos1[0] * scale_factor_x, -0.5, 0.5)
+    pos2_y = np.clip(pos1[1] * scale_factor_y, -0.5, 0.5)
     
     pos2 = np.array([
         pos2_x,
@@ -59,11 +74,9 @@ def generate_random_targets():
         np.random.uniform(0.3, 0.5)
     ])
     
-    return [
-        {"pos": pos1, "quat": np.array([0.0, 0, 0.0, 0.0])},
-        {"pos": pos2, "quat": np.array([0.0, 0, 0.0, 0.0])},
-    ]
-
+    target1 = {"pos": pos2, "quat": np.array([0.0, 0.0, 0.0, 0.0])}
+    
+    return [target0, target1]
 
 def main() -> None:
     
@@ -71,6 +84,9 @@ def main() -> None:
     # Load the model and data
     model = mujoco.MjModel.from_xml_path("franka_emika_panda/scene.xml")
     data = mujoco.MjData(model)
+    
+    data.qpos[:] = np.array(targets[0]["qpos"])
+    data.ctrl[:] = np.array(targets[0]["qpos"][:8])
 
     # Enable gravity compensation
     model.body_gravcomp[:] = float(gravity_compensation)
@@ -88,7 +104,7 @@ def main() -> None:
     
     
     #initialize the current target
-    current_target = 0
+    current_target = 1
 
     # Get the DOF and actuator IDs for the joints we wish to control
     joint_names = [
