@@ -2,6 +2,7 @@ import mujoco
 import mujoco.viewer
 import numpy as np
 import time
+import pickle  # add at the top along with other imports if not already present
 
 # Integration timestep in seconds. This corresponds to the amount of time the joint
 # velocities will be integrated for to obtain the desired joint positions.
@@ -31,8 +32,6 @@ max_angvel = 0.785
  # Define gripper states
 GRIPPER_OPEN = 0.0
 GRIPPER_CLOSE = 220.0
-
-
 
 def generate_random_targets():
     import numpy as np
@@ -77,6 +76,60 @@ def generate_random_targets():
     target1 = {"pos": pos2, "quat": np.array([0.0, 0.0, 0.0, 0.0])}
     
     return [target0, target1]
+
+def save_demo_data_v2(qpos_list, joint_names, dof_ids, home_q, gripper_open):
+    """
+    Saves collected trajectories into a pickle file (demo_v2.pkl) in data format v2.
+    """
+    actions = []
+    for qpos in qpos_list:
+        dof_pos = {joint: float(qpos[dof_ids[i]]) for i, joint in enumerate(joint_names)}
+        action = {
+            "dof_pos_target": dof_pos,
+            "ee_pose_target": {
+                "pos": [0.0, 0.0, 0.0],
+                "rot": [1.0, 0.0, 0.0, 0.0],
+                "gripper_joint_pos": gripper_open
+            }
+        }
+        actions.append(action)
+    
+    if qpos_list:
+        init_dof = {joint: float(qpos_list[0][dof_ids[i]]) for i, joint in enumerate(joint_names)}
+    else:
+        init_dof = {joint: float(home_q[dof_ids[i]]) for i, joint in enumerate(joint_names)}
+    
+    init_state = {
+        "franka": {
+            "pos": [0.0, 0.0, 0.0],
+            "rot": [1.0, 0.0, 0.0, 0.0],
+            "dof_pos": init_dof
+        }
+    }
+    
+    states = []
+    for qpos in qpos_list:
+        state_dof = {joint: float(qpos[dof_ids[i]]) for i, joint in enumerate(joint_names)}
+        state = {
+            "franka": {
+                "pos": [0.0, 0.0, 0.0],
+                "rot": [1.0, 0.0, 0.0, 0.0],
+                "dof_pos": state_dof
+            }
+        }
+        states.append(state)
+    
+    demo = {
+        "actions": actions,
+        "init_state": init_state,
+        "states": states,
+        "extra": None
+    }
+    demo_data = {"franka": [demo]}
+    
+    with open("demo_v2.pkl", "wb") as f:
+        pickle.dump(demo_data, f)
+    print("Saved demonstration data to demo_v2.pkl")
 
 def main() -> None:
     
@@ -179,6 +232,9 @@ def main() -> None:
             mujoco.mju_quat2Vel(twist[3:], error_quat, 1.0)
             twist[3:] *= Kori / integration_dt
             
+            
+            
+            
             if np.linalg.norm(dx) < 0.02 and np.linalg.norm(error_quat[1:]) < 0.02:
                 print("Target reached")
                 if current_target == len(targets) - 1:
@@ -220,6 +276,10 @@ def main() -> None:
             data.ctrl[actuator_ids] = q[dof_ids]
             mujoco.mj_step(model, data)
             
+            #save the data
+            #qpos_list.append(data.qpos.copy())
+            #ctrl_list.append(data.ctrl.copy())
+            #init_controller(model, data)
 
             viewer.sync()
             time_until_next_step = dt - (time.time() - step_start)
@@ -231,6 +291,9 @@ def main() -> None:
             for qpos in qpos_list:
                 qpos_str = ' '.join(map(str, qpos))
                 file.write(f"{qpos_str}\n")
+    
+    # Call new function to save demonstration data in v2 format
+    save_demo_data_v2(qpos_list, joint_names, dof_ids, q0, GRIPPER_OPEN)
 
 if __name__ == "__main__":
     main()
